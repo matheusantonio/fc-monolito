@@ -4,15 +4,16 @@ import AddProductUseCase from "../usecase/add-product/add-product.usecase";
 import CheckStockUseCase from "../usecase/check-stock/check-stock.usecase";
 
 export default class ProductAdmFacadeFactory {
-  static create() {
-    const productRepository = new ProductRepository();
-    const addProductUseCase = new AddProductUseCase(productRepository);
-    const checkStockUseCase = new CheckStockUseCase(productRepository);
-    const productFacade = new ProductAdmFacade({
-      addUseCase: addProductUseCase,
-      stockUseCase: checkStockUseCase,
-    });
+    static create() {
 
-    return productFacade;
-  }
+        const productRepository = new ProductRepository();
+        const addProductUseCase = new AddProductUseCase(productRepository);
+        const checkStockUsecase = new CheckStockUseCase(productRepository);
+        const productFacade = new ProductAdmFacade({
+            addUseCase: addProductUseCase,
+            stockUseCase: checkStockUsecase,
+        });
+
+        return productFacade;
+    }
 }

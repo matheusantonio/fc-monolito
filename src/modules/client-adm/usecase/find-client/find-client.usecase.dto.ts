@@ -1,12 +1,12 @@
 export interface FindClientInputDto {
-  id: string;
+    id: string;
 }
 
 export interface FindClientOutputDto {
-  id: string;
-  name: string;
-  email: string;
-  address: string;
-  createdAt: Date;
-  updatedAt: Date;
+    id: string;
+    name: string;
+    email: string;
+    address: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
