@@ -18,7 +18,7 @@ export default class BaseEntity {
     public get createdAt(): Date {
         return this._createdAt;
     }
-    public set createdAd(value: Date) {
+    public set createdAt(value: Date) {
         this._createdAt = value;
     }
 
