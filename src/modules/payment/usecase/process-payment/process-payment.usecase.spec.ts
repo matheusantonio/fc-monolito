@@ -1,5 +1,5 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
-import Transaction from "../../domain/transaction";
+import Transaction from "../../domain/transaction.entity";
 import ProcessPaymentUseCase from "./process-payment.usecase";
 
 const transaction = new Transaction({
@@ -22,7 +22,7 @@ const transactionDeclined = new Transaction({
     status: "declined"
 });
 
-const MockRepository = () => {
+const MockRepositoryDeclined = () => {
     return {
         save: jest.fn().mockReturnValue(Promise.resolve(transactionDeclined)),
     }
@@ -50,7 +50,7 @@ describe("Process payment usecase unit test", () => {
     });
 
     it("should decline a transaction", async () => {
-        const paymentRepository = MockRepository();
+        const paymentRepository = MockRepositoryDeclined();
         const usecase = new ProcessPaymentUseCase(paymentRepository);
         const input = {
             orderId: "1",
@@ -59,13 +59,13 @@ describe("Process payment usecase unit test", () => {
 
         const result = await usecase.execute(input);
 
-        expect(result.transactionId).toBe(transaction.id.id);
+        expect(result.transactionId).toBe(transactionDeclined.id.id);
         expect(paymentRepository.save).toHaveBeenCalled();
         expect(result.status).toBe("declined");
         expect(result.amount).toBe(50);
         expect(result.orderId).toBe("1");
-        expect(result.createdAt).toBe(transaction.createdAt);
-        expect(result.updatedAt).toBe(transaction.updatedAt);
+        expect(result.createdAt).toBe(transactionDeclined.createdAt);
+        expect(result.updatedAt).toBe(transactionDeclined.updatedAt);
     });
 
     

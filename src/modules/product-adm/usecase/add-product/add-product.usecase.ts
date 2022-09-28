@@ -30,7 +30,7 @@ export default class AddProductUseCase {
             description: product.description,
             stock: product.stock,
             purchasePrice: product.purchasePrice,
-            createdAt: product.createdAd,
+            createdAt: product.createdAt,
             updatedAt: product.updatedAt,
         }
     }
